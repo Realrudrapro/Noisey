@@ -1,56 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 
-main-btn{
-    text-align: center;
-}
-button{
-    display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border: 1px solid #1d4ed8;
-  border-radius: 0.5rem;
-  background: #2563eb;
-  color: #fff;
-  font: inherit;
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
-}
-.button:hover {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-  transform: translateY(-1px);
+.main-btn { 
+  text-align: center; 
 }
 
-.button:active {
-  background: #1e40af;
-  border-color: #1e40af;
-  box-shadow: none;
-  transform: translateY(0);
+.button { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.5rem; 
+  padding: 0.75rem 1.25rem; 
+  border: 1px solid #1d4ed8; 
+  border-radius: 0.5rem; 
+  background: #2563eb; 
+  color: #fff; 
+  font: inherit; 
+  font-weight: 600; 
+  line-height: 1; 
+  cursor: pointer; 
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; 
 }
 
-.button:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.25);
-  outline-offset: 2px;
+.button:hover { 
+  background: #1d4ed8; 
+  border-color: #1d4ed8; 
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); 
+  transform: translateY(-1px); 
 }
 
-.button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+.button:active { 
+  background: #1e40af; 
+  border-color: #1e40af; 
+  box-shadow: none; 
+  transform: translateY(0); 
 }
-.header{
-    text-align: center;
-    font-family: 'Google Sans';
-    font-weight: 400;
 
+.button:focus-visible { 
+  outline: 3px solid rgba(37, 99, 235, 0.25); 
+  outline-offset: 2px; 
+}
+
+.button:disabled { 
+  opacity: 0.55; 
+  cursor: not-allowed; 
+  transform: none; 
+  box-shadow: none; 
+}
+
+.header { 
+  text-align: center; 
+  font-family: 'Google Sans', sans-serif; 
+  font-weight: 400; 
 }
