@@ -5,6 +5,7 @@
 }
 
 .button {
+  font-family: 'Courier New', Courier, monospace;
   display: inline-flex;
   align-items: center;
   justify-content: center;
