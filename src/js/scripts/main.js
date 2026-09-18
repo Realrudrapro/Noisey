@@ -16,7 +16,7 @@ async function initAudio() {
     volume /= data.length;
     
     if (volume > 20) {
-      console.log("LOUD SOUND!"); // Put whatever you want controlled here
+      console.log("LOUD SOUND!");
     }
     requestAnimationFrame(checkSound);
   }
