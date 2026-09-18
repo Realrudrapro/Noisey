@@ -19,7 +19,10 @@ async function initAudio() {
         document.getElementById("2623221602").textContent = 'TO LOUD'
     }
       if (volume < 20) {
-        document.getElementById("2623221602").textContent = ''
+        setTimeout(() => {
+                    document.getElementById("2623221602").textContent = ''
+
+}, 3000);
     }
     requestAnimationFrame(checkSound);
   }
