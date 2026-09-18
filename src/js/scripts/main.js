@@ -16,7 +16,7 @@ async function initAudio() {
     volume /= data.length;
     
     if (volume > 20) {
-      console.log("LOUD SOUND!");
+        document.getElementById("2623221602").textContent = 'TO LOUD'
     }
     requestAnimationFrame(checkSound);
   }
@@ -25,3 +25,5 @@ async function initAudio() {
 }
 
 initAudio();
+
+
