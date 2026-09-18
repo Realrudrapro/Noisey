@@ -18,6 +18,9 @@ async function initAudio() {
     if (volume > 20) {
         document.getElementById("2623221602").textContent = 'TO LOUD'
     }
+      if (volume < 20) {
+        document.getElementById("2623221602").textContent = ''
+    }
     requestAnimationFrame(checkSound);
   }
   
