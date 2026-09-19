@@ -9,3 +9,32 @@
     text-align: center;
     font-family: 'inter';
 }
+button{
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  
+  background: linear-gradient(90deg, #ff0055, #00ff66, #00ffff, #ff0055);
+  background-size: 300% 100%;
+  
+  transition: transform 0.2s ease;
+}
+
+.rainbow-btn-bg:hover {
+  animation: slide-rainbow 2s linear infinite;
+  transform: translateY(-2px);
+}
+
+.rainbow-btn-bg:active {
+  transform: translateY(1px);
+}
+
+@keyframes slide-rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
