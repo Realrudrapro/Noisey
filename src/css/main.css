@@ -1,14 +1,11 @@
-
-#circle {
-    width: 100px;
-    height: 100px;
-    background: blue;
-    border-radius: 50%;
-    transition: width 0.05s, height 0.05s;
-}
+@import url('https://googleapis.com');
 
 #start {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+.main{
+    text-align: center;
+    font-family: 'inter';
 }
