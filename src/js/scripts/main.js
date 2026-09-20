@@ -1,40 +1,39 @@
-let analyser;
-let data;
-let audioContext;
-let microphoneStream;
+window.Noisey = window.Noisey || {};
 
 document.getElementById("start").addEventListener("click", async () => {
     try {
-        microphoneStream = await navigator.mediaDevices.getUserMedia({
+        Noisey.microphoneStream = await navigator.mediaDevices.getUserMedia({
             audio: true
         });
 
-        audioContext = new AudioContext();
+        Noisey.audioContext = new AudioContext();
 
-        if (audioContext.state === "suspended") {
-            await audioContext.resume();
+        if (Noisey.audioContext.state === "suspended") {
+            await Noisey.audioContext.resume();
         }
 
-        alertSound.volume = 1;
-        alertSound.currentTime = 0;
+        Noisey.alertSound.volume = 1;
+        Noisey.alertSound.currentTime = 0;
 
-        await alertSound.play();
+        await Noisey.alertSound.play();
 
-        alertSound.pause();
-        alertSound.currentTime = 0;
-        alertPlaying = false;
+        Noisey.alertSound.pause();
+        Noisey.alertSound.currentTime = 0;
+        Noisey.alertPlaying = false;
 
-        const source = audioContext.createMediaStreamSource(microphoneStream);
+        const source = Noisey.audioContext.createMediaStreamSource(
+            Noisey.microphoneStream
+        );
 
-        analyser = audioContext.createAnalyser();
-        analyser.fftSize = 512;
-        analyser.smoothingTimeConstant = 0.8;
+        Noisey.analyser = Noisey.audioContext.createAnalyser();
+        Noisey.analyser.fftSize = 512;
+        Noisey.analyser.smoothingTimeConstant = 0.8;
 
-        source.connect(analyser);
+        source.connect(Noisey.analyser);
 
-        data = new Uint8Array(analyser.fftSize);
+        Noisey.data = new Uint8Array(Noisey.analyser.fftSize);
 
-        checkSound();
+        Noisey.checkSound();
     } catch (err) {
         console.error("Permission/audio error:", err);
     }

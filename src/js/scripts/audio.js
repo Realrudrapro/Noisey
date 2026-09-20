@@ -1,10 +1,12 @@
-let alertSound = new Audio("noisey.mp3");
-let alertPlaying = false;
+window.Noisey = window.Noisey || {};
 
-alertSound.addEventListener("play", () => {
-    alertPlaying = true;
+Noisey.alertSound = new Audio("noisey.mp3");
+Noisey.alertPlaying = false;
+
+Noisey.alertSound.addEventListener("play", () => {
+    Noisey.alertPlaying = true;
 });
 
-alertSound.addEventListener("ended", () => {
-    alertPlaying = false;
+Noisey.alertSound.addEventListener("ended", () => {
+    Noisey.alertPlaying = false;
 });
