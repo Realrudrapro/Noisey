@@ -15,8 +15,6 @@ document.getElementById("start").addEventListener("click", async () => {
             await audioContext.resume();
         }
 
-        const alertSound = noiseyAudio.alertSound;
-
         alertSound.volume = 1;
         alertSound.currentTime = 0;
 
@@ -24,7 +22,7 @@ document.getElementById("start").addEventListener("click", async () => {
 
         alertSound.pause();
         alertSound.currentTime = 0;
-        noiseyAudio.alertPlaying = false;
+        alertPlaying = false;
 
         const source = audioContext.createMediaStreamSource(microphoneStream);
 
