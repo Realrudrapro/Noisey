@@ -4,39 +4,40 @@ let audioContext;
 let microphoneStream;
 
 document.getElementById("start").addEventListener("click", async () => {
-  try {
-    microphoneStream = await navigator.mediaDevices.getUserMedia({
-      audio: true
-    });
+    try {
+        microphoneStream = await navigator.mediaDevices.getUserMedia({
+            audio: true
+        });
 
-    audioContext = new AudioContext();
+        audioContext = new AudioContext();
 
-    if (audioContext.state === "suspended") {
-      await audioContext.resume();
+        if (audioContext.state === "suspended") {
+            await audioContext.resume();
+        }
+
+        const alertSound = noiseyAudio.alertSound;
+
+        alertSound.volume = 1;
+        alertSound.currentTime = 0;
+
+        await alertSound.play();
+
+        alertSound.pause();
+        alertSound.currentTime = 0;
+        noiseyAudio.alertPlaying = false;
+
+        const source = audioContext.createMediaStreamSource(microphoneStream);
+
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 512;
+        analyser.smoothingTimeConstant = 0.8;
+
+        source.connect(analyser);
+
+        data = new Uint8Array(analyser.fftSize);
+
+        checkSound();
+    } catch (err) {
+        console.error("Permission/audio error:", err);
     }
-
-    alertSound.volume = 1;
-    alertSound.currentTime = 0;
-
-    await alertSound.play();
-
-    alertSound.pause();
-    alertSound.currentTime = 0;
-    alertPlaying = false;
-
-    const source = audioContext.createMediaStreamSource(microphoneStream);
-
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 512;
-    analyser.smoothingTimeConstant = 0.8;
-
-    source.connect(analyser);
-
-    data = new Uint8Array(analyser.fftSize);
-
-    checkSound();
-
-  } catch (err) {
-    console.error("Permission/audio error:", err);
-  }
 });

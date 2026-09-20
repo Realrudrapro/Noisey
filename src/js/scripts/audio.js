@@ -1,11 +1,12 @@
-const alertSound = new Audio("noisey.mp3");
+window.noiseyAudio = {
+    alertSound: new Audio("noisey.mp3"),
+    alertPlaying: false
+};
 
-let alertPlaying = false;
-
-alertSound.addEventListener("play", () => {
-  alertPlaying = true;
+noiseyAudio.alertSound.addEventListener("play", () => {
+    noiseyAudio.alertPlaying = true;
 });
 
-alertSound.addEventListener("ended", () => {
-  alertPlaying = false;
+noiseyAudio.alertSound.addEventListener("ended", () => {
+    noiseyAudio.alertPlaying = false;
 });
