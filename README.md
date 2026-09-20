@@ -1,15 +1,3 @@
-# Project
+# Noisey
 
-## Development
-
-Install dependencies with:
-
-npm install
-
-Run the development server with:
-
-npm run dev
-
-Build the project with:
-
-npm run build
+A tool for schools to manage class noise.
