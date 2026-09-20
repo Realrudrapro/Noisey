@@ -1,4 +1,4 @@
-const alertSound = new Audio("");
+const alertSound = new Audio("noisey.mp3");
 
 alertSound.addEventListener("play", () => { alertPlaying = true; });
 alertSound.addEventListener("ended", () => { alertPlaying = false; });
