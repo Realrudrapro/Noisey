@@ -1,18 +1,7 @@
-const alertSound = new Audio("noisey.mp3");
-
 let analyser;
 let data;
-let alertPlaying = false;
 let audioContext;
 let microphoneStream;
-
-alertSound.addEventListener("play", () => {
-  alertPlaying = true;
-});
-
-alertSound.addEventListener("ended", () => {
-  alertPlaying = false;
-});
 
 document.getElementById("start").addEventListener("click", async () => {
   try {
@@ -26,16 +15,14 @@ document.getElementById("start").addEventListener("click", async () => {
       await audioContext.resume();
     }
 
-    try {
-      alertSound.volume = 1;
-      alertSound.currentTime = 0;
-      await alertSound.play();
-      alertSound.pause();
-      alertSound.currentTime = 0;
-      alertPlaying = false;
-    } catch (audioError) {
-      console.error("Alert sound error:", audioError);
-    }
+    alertSound.volume = 1;
+    alertSound.currentTime = 0;
+
+    await alertSound.play();
+
+    alertSound.pause();
+    alertSound.currentTime = 0;
+    alertPlaying = false;
 
     const source = audioContext.createMediaStreamSource(microphoneStream);
 
@@ -53,20 +40,3 @@ document.getElementById("start").addEventListener("click", async () => {
     console.error("Permission/audio error:", err);
   }
 });
-
-function checkSound() {
-  analyser.getByteTimeDomainData(data);
-
-  let sum = 0;
-
-  for (let i = 0; i < data.length; i++) {
-    const normalized = (data[i] - 128) / 128;
-    sum += normalized * normalized;
-  }
-
-  const volume = Math.sqrt(sum / data.length);
-
-  console.log("Volume:", volume);
-
-  requestAnimationFrame(checkSound);
-}
