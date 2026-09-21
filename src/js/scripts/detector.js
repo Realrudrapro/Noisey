@@ -1,5 +1,8 @@
 window.Noisey = window.Noisey || {};
 
+// Cache the element once instead of looking it up every animation frame
+Noisey.warningEl = null;
+
 Noisey.checkSound = function () {
     Noisey.analyser.getByteTimeDomainData(Noisey.data);
 
@@ -11,21 +14,31 @@ Noisey.checkSound = function () {
     }
 
     const volume = Math.sqrt(sum / Noisey.data.length);
-    const warning = document.getElementById("2623221602");
 
-    if (volume > 0.2) {
-        warning.textContent = "TOO LOUD";
+    // Guard against a missing/mistyped element instead of throwing
+    // and silently killing the whole detection loop
+    if (Noisey.warningEl) {
+        if (volume > 0.2) {
+            Noisey.warningEl.textContent = "TOO LOUD";
 
-        if (!Noisey.alertPlaying) {
-            Noisey.alertSound.currentTime = 0;
+            if (!Noisey.alertPlaying) {
+                Noisey.alertSound.currentTime = 0;
 
-            Noisey.alertSound.play().catch(() => {
-                Noisey.alertPlaying = false;
-            });
+                Noisey.alertSound.play().catch(() => {
+                    Noisey.alertPlaying = false;
+                });
+            }
+        } else {
+            Noisey.warningEl.textContent = "";
         }
-    } else {
-        warning.textContent = "";
     }
 
-    requestAnimationFrame(Noisey.checkSound);
+    Noisey.rafId = requestAnimationFrame(Noisey.checkSound);
+};
+
+Noisey.stopChecking = function () {
+    if (Noisey.rafId) {
+        cancelAnimationFrame(Noisey.rafId);
+        Noisey.rafId = null;
+    }
 };
